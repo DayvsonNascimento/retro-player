@@ -10,6 +10,7 @@ export function useSpotifyAuth() {
   const tokenExpiry = useStore((s) => s.tokenExpiry);
   const refreshTimerRef = useRef(null);
   const handledRef = useRef(false);
+  const restoreAttemptedRef = useRef(false);
 
   const login = useCallback(() => {
     startAuth();
@@ -36,8 +37,27 @@ export function useSpotifyAuth() {
           setAuth(data.access_token, data.refresh_token, data.expires_in)
         )
         .catch((err) => console.error('Spotify token exchange failed:', err));
+      return;
     }
-  }, [isAuthenticated, setAuth]);
+
+    // No code from redirect: try to restore session from stored refresh token
+    if (restoreAttemptedRef.current) return;
+    const storedRefresh = localStorage.getItem('spotify_refresh_token');
+    if (!storedRefresh) return;
+
+    restoreAttemptedRef.current = true;
+    refreshAccessToken(storedRefresh)
+      .then((data) =>
+        setAuth(
+          data.access_token,
+          data.refresh_token || storedRefresh,
+          data.expires_in
+        )
+      )
+      .catch(() => {
+        clearAuth();
+      });
+  }, [isAuthenticated, setAuth, clearAuth]);
 
   // Auto-refresh token before expiry
   useEffect(() => {

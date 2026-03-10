@@ -1037,3 +1037,40 @@ body {
   background: #223;
   border-radius: 2px;
 }
+
+/* ===== MOBILE LAYOUT (fixed full viewport, no resize) ===== */
+@media (max-width: 768px) {
+  .wmp-window.wmp-mobile {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .wmp-window.wmp-mobile .wmp-resize-handle,
+  .wmp-window.wmp-mobile .wmp-playlist-resize-handle {
+    display: none;
+  }
+
+  .wmp-window.wmp-mobile .wmp-main {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .wmp-window.wmp-mobile .wmp-center {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .wmp-window.wmp-mobile .wmp-playlist {
+    flex: 0 0 45%;
+    min-width: 0;
+    min-height: 0;
+  }
+}

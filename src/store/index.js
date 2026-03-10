@@ -30,9 +30,17 @@ export const useStore = create((set, get) => ({
 
   setAuth: (accessToken, refreshToken, expiresIn) => {
     const tokenExpiry = Date.now() + expiresIn * 1000;
+    try {
+      localStorage.setItem('spotify_refresh_token', refreshToken);
+      localStorage.setItem('spotify_token_expiry', String(tokenExpiry));
+    } catch (_) {}
     set({ accessToken, refreshToken, tokenExpiry, isAuthenticated: true });
   },
-  clearAuth: () =>
+  clearAuth: () => {
+    try {
+      localStorage.removeItem('spotify_refresh_token');
+      localStorage.removeItem('spotify_token_expiry');
+    } catch (_) {}
     set({
       accessToken: null,
       refreshToken: null,
@@ -43,7 +51,8 @@ export const useStore = create((set, get) => ({
       currentTrack: null,
       isPlaying: false,
       tracks: [],
-    }),
+    });
+  },
   setPlayer: (player) => set({ player }),
   setDeviceId: (deviceId) => set({ deviceId }),
   setCurrentTrack: (track) => set({ currentTrack: track }),

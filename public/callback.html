@@ -9,12 +9,14 @@
     var code = params.get('code');
     var error = params.get('error');
 
+    var basePath = window.location.pathname.replace(/\/callback\.html\/?$/i, '') || '/';
+    var appRoot = window.location.origin + basePath + (basePath.endsWith('/') ? '' : '/');
     if (code) {
       localStorage.setItem('spotify_auth_code', code);
-      window.location.href = window.location.origin;
+      window.location.href = appRoot;
     } else if (error) {
       localStorage.setItem('spotify_auth_error', error);
-      window.location.href = window.location.origin;
+      window.location.href = appRoot;
     } else {
       document.body.innerHTML =
         '<p>Authentication failed. Please close this tab and try again.</p>';

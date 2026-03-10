@@ -1,5 +1,6 @@
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const REDIRECT_URI = `${window.location.origin}/callback.html`;
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '';
+const REDIRECT_URI = `${window.location.origin}${BASE ? BASE + '/' : '/'}callback.html`;
 const SCOPES = [
   'streaming',
   'user-read-email',
@@ -31,7 +32,7 @@ function base64urlencode(buffer) {
 
 export async function startAuth() {
   const codeVerifier = generateRandomString(64);
-  localStorage.setItem('spotify_code_verifier', codeVerifier);
+  sessionStorage.setItem('spotify_code_verifier', codeVerifier);
 
   const hashed = await sha256(codeVerifier);
   const codeChallenge = base64urlencode(hashed);
@@ -50,8 +51,8 @@ export async function startAuth() {
 }
 
 export async function exchangeCode(code) {
-  const codeVerifier = localStorage.getItem('spotify_code_verifier');
-  localStorage.removeItem('spotify_code_verifier');
+  const codeVerifier = sessionStorage.getItem('spotify_code_verifier');
+  sessionStorage.removeItem('spotify_code_verifier');
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
