@@ -63,6 +63,29 @@ The app will start at [http://localhost:5173](http://localhost:5173).
 5. Search for songs and click to play them
 6. Use the transport controls at the bottom to control playback
 
+## Deploy to GitHub Pages
+
+The repo includes a workflow (`.github/workflows/deploy.yml`) that builds and deploys on push to `main`.
+
+1. **Enable GitHub Pages with Actions (required)**  
+   In your repo: **Settings → Pages**. Under **Build and deployment**, set **Source** to **GitHub Actions**.  
+   If Source is "Deploy from a branch", the site will serve the raw repo (unbundled source) and the app will not work.
+
+2. **Spotify redirect URI for production**  
+   In the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard), add this **Redirect URI** for your app:  
+   `https://<your-username>.github.io/retro-player/callback.html`  
+   (Replace `<your-username>` and `retro-player` if your repo path is different.)
+
+3. **Spotify Client ID (required for production)**  
+   The build has no access to your local `.env`. Add a **repository secret** so the deployed app can connect to Spotify:
+   - In the repo go to **Settings → Secrets and variables → Actions**
+   - Click **New repository secret**
+   - Name: `VITE_SPOTIFY_CLIENT_ID`
+   - Value: your Spotify app Client ID (same as in `.env` locally)
+   - Save. Then re-run the **pages build and deployment** workflow (or push a commit) so the next build inlines the client ID.
+
+After the workflow runs, the app is at `https://<your-username>.github.io/retro-player/`.
+
 ## Architecture
 
 ```

@@ -31,9 +31,15 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          if [ -z "$VITE_SPOTIFY_CLIENT_ID" ]; then
+            echo "::error::VITE_SPOTIFY_CLIENT_ID secret is missing or empty. Add it in Settings → Secrets and variables → Actions (name exactly: VITE_SPOTIFY_CLIENT_ID)."
+            exit 1
+          fi
+          npm run build
         env:
           VITE_BASE_URL: /${{ github.event.repository.name }}/
+          VITE_SPOTIFY_CLIENT_ID: ${{ secrets.VITE_SPOTIFY_CLIENT_ID }}
 
 
       - name: Upload artifact
