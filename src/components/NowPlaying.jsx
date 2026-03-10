@@ -4,9 +4,17 @@ import SpotifySearch from './SpotifySearch';
 import SkinChooser from './SkinChooser';
 
 export default function NowPlaying() {
-  const { isAuthenticated, login, logout } = useSpotifyAuth();
+  const { isAuthenticated, login, logout, isRestoring } = useSpotifyAuth();
   const activeNav = useStore((s) => s.activeNav);
   const deviceId = useStore((s) => s.deviceId);
+
+  if (isRestoring) {
+    return (
+      <div className="wmp-connect-overlay">
+        <span className="wmp-restoring-text">Restoring session…</span>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (

@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback, useRef, useState } from 'react';
 import { useStore } from '../store';
 import { startAuth, exchangeCode, refreshAccessToken } from '../utils/spotify';
 
@@ -11,6 +11,14 @@ export function useSpotifyAuth() {
   const refreshTimerRef = useRef(null);
   const handledRef = useRef(false);
   const restoreAttemptedRef = useRef(false);
+
+  const [isRestoring, setIsRestoring] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !!(
+      localStorage.getItem('spotify_refresh_token') &&
+      !localStorage.getItem('spotify_auth_code')
+    );
+  });
 
   const login = useCallback(() => {
     startAuth();
@@ -26,11 +34,13 @@ export function useSpotifyAuth() {
     if (error) {
       localStorage.removeItem('spotify_auth_error');
       console.error('Spotify auth error:', error);
+      setIsRestoring(false);
       return;
     }
 
     if (code) {
       handledRef.current = true;
+      setIsRestoring(false);
       localStorage.removeItem('spotify_auth_code');
       exchangeCode(code)
         .then((data) =>
@@ -43,9 +53,13 @@ export function useSpotifyAuth() {
     // No code from redirect: try to restore session from stored refresh token
     if (restoreAttemptedRef.current) return;
     const storedRefresh = localStorage.getItem('spotify_refresh_token');
-    if (!storedRefresh) return;
+    if (!storedRefresh) {
+      setIsRestoring(false);
+      return;
+    }
 
     restoreAttemptedRef.current = true;
+    setIsRestoring(true);
     refreshAccessToken(storedRefresh)
       .then((data) =>
         setAuth(
@@ -56,6 +70,9 @@ export function useSpotifyAuth() {
       )
       .catch(() => {
         clearAuth();
+      })
+      .finally(() => {
+        setIsRestoring(false);
       });
   }, [isAuthenticated, setAuth, clearAuth]);
 
@@ -88,5 +105,5 @@ export function useSpotifyAuth() {
     return () => clearTimeout(refreshTimerRef.current);
   }, [isAuthenticated, refreshToken, tokenExpiry, setAuth, clearAuth]);
 
-  return { isAuthenticated, login, logout: clearAuth };
+  return { isAuthenticated, login, logout: clearAuth, isRestoring };
 }

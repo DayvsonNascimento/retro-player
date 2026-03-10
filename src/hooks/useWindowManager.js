@@ -4,6 +4,7 @@ const DEFAULT_WIDTH = 780;
 const DEFAULT_HEIGHT = 560;
 const MIN_WIDTH = 500;
 const MIN_HEIGHT = 360;
+const WINDOW_STATE_KEY = 'wmp_window_state';
 
 function getDefaultPosition(w, h) {
   return {
@@ -12,8 +13,27 @@ function getDefaultPosition(w, h) {
   };
 }
 
+function loadWindowState() {
+  try {
+    const raw = localStorage.getItem(WINDOW_STATE_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (
+      typeof s.x === 'number' && typeof s.y === 'number' &&
+      typeof s.width === 'number' && typeof s.height === 'number' &&
+      s.width >= MIN_WIDTH && s.height >= MIN_HEIGHT &&
+      typeof s.isMaximized === 'boolean' && typeof s.isMinimized === 'boolean'
+    ) {
+      return s;
+    }
+  } catch (_) {}
+  return null;
+}
+
 export function useWindowManager() {
   const [state, setState] = useState(() => {
+    const saved = loadWindowState();
+    if (saved) return saved;
     const pos = getDefaultPosition(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     return {
       x: pos.x,
@@ -24,6 +44,12 @@ export function useWindowManager() {
       isMinimized: false,
     };
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(WINDOW_STATE_KEY, JSON.stringify(state));
+    } catch (_) {}
+  }, [state]);
 
   // Keep a ref in sync so event handlers can read current values synchronously
   const stateRef = useRef(state);

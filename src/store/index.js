@@ -26,7 +26,28 @@ export const useStore = create((set, get) => ({
   activeNav: 'now-playing',
 
   visualizer: 'water',
-  theme: 'classic',
+  theme: (() => {
+    try {
+      const t = localStorage.getItem('wmp_theme');
+      if (['classic', 'tokyo-night', 'dracula', 'monokai', 'solarized'].includes(t)) return t;
+    } catch (_) {}
+    return 'classic';
+  })(),
+
+  mobileShowVisualizer: (() => {
+    try {
+      const v = localStorage.getItem('wmp_mobile_show_visualizer');
+      if (v === 'true' || v === 'false') return v === 'true';
+    } catch (_) {}
+    return true;
+  })(),
+  mobileShowPlaylist: (() => {
+    try {
+      const p = localStorage.getItem('wmp_mobile_show_playlist');
+      if (p === 'true' || p === 'false') return p === 'true';
+    } catch (_) {}
+    return true;
+  })(),
 
   setAuth: (accessToken, refreshToken, expiresIn) => {
     const tokenExpiry = Date.now() + expiresIn * 1000;
@@ -69,5 +90,22 @@ export const useStore = create((set, get) => ({
   setSearchQuery: (searchQuery) => set({ searchQuery }),
   setActiveNav: (activeNav) => set({ activeNav }),
   setVisualizer: (visualizer) => set({ visualizer }),
-  setTheme: (theme) => set({ theme }),
+  setTheme: (theme) => {
+    try {
+      localStorage.setItem('wmp_theme', theme);
+    } catch (_) {}
+    set({ theme });
+  },
+  setMobileShowVisualizer: (mobileShowVisualizer) => {
+    try {
+      localStorage.setItem('wmp_mobile_show_visualizer', String(mobileShowVisualizer));
+    } catch (_) {}
+    set({ mobileShowVisualizer });
+  },
+  setMobileShowPlaylist: (mobileShowPlaylist) => {
+    try {
+      localStorage.setItem('wmp_mobile_show_playlist', String(mobileShowPlaylist));
+    } catch (_) {}
+    set({ mobileShowPlaylist });
+  },
 }));

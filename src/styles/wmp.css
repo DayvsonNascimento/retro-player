@@ -805,6 +805,11 @@ body {
   pointer-events: auto;
 }
 
+.wmp-restoring-text {
+  color: var(--wmp-text, #e0e0e0);
+  font-size: 14px;
+}
+
 .wmp-btn-spotify {
   padding: 8px 24px;
   background: #1DB954;
@@ -1072,5 +1077,74 @@ body {
     flex: 0 0 45%;
     min-width: 0;
     min-height: 0;
+  }
+
+  /* Horizontal Now Playing bar below main content, above Controls */
+  .wmp-window.wmp-mobile .wmp-mobile-nowplaying-bar {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 6px 10px;
+    gap: 8px;
+    background: var(--wt-panel-bg, rgba(0, 8, 34, 0.6));
+    border-top: 1px solid var(--wt-border, #334);
+  }
+
+  .wmp-window.wmp-mobile .wmp-mobile-nowplaying-bar .wmp-now-playing-bar,
+  .wmp-window.wmp-mobile .wmp-mobile-nowplaying-bar .wmp-connect-overlay {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: static;
+    min-height: 0;
+  }
+
+  .wmp-window.wmp-mobile .wmp-mobile-nowplaying-bar .wmp-device-status {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Collapsible sections: when viz hidden, playlist grows; when list hidden, center grows */
+  .wmp-window.wmp-mobile .wmp-main.wmp-mobile-viz-off .wmp-center {
+    flex: 0 0 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .wmp-window.wmp-mobile .wmp-main.wmp-mobile-viz-off .wmp-playlist {
+    flex: 1;
+    min-width: 0;
+  }
+  .wmp-window.wmp-mobile .wmp-main.wmp-mobile-list-off .wmp-playlist {
+    display: none;
+  }
+  .wmp-window.wmp-mobile .wmp-main.wmp-mobile-list-off .wmp-center {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Section toggles (Viz / List) */
+  .wmp-mobile-section-toggle {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid var(--wt-btn-border, #334);
+    border-radius: 4px;
+    background: var(--wt-btn-b, #223);
+    color: var(--wmp-text, #e0e0e0);
+    cursor: pointer;
+  }
+  .wmp-mobile-section-toggle.active {
+    background: var(--wt-playlist-hdr-a, #334);
+    border-color: var(--wt-controls-border, #446);
   }
 }

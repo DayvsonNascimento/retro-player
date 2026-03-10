@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import TitleBar from './components/TitleBar';
 import MenuBar from './components/MenuBar';
 import NavPanel from './components/NavPanel';
@@ -16,15 +16,33 @@ const PLAYLIST_MAX = 420;
 const PLAYLIST_DEFAULT = 220;
 const MOBILE_BREAKPOINT = '(max-width: 768px)';
 
+function loadPlaylistWidth() {
+  try {
+    const w = Number(localStorage.getItem('wmp_playlist_width'));
+    if (Number.isFinite(w) && w >= PLAYLIST_MIN && w <= PLAYLIST_MAX) return w;
+  } catch (_) {}
+  return PLAYLIST_DEFAULT;
+}
+
 export default function App() {
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
   const { state, startDrag, startResize, toggleMaximize, toggleMinimize } =
     useWindowManager();
   const theme = useStore((s) => s.theme);
+  const mobileShowVisualizer = useStore((s) => s.mobileShowVisualizer);
+  const mobileShowPlaylist = useStore((s) => s.mobileShowPlaylist);
+  const setMobileShowVisualizer = useStore((s) => s.setMobileShowVisualizer);
+  const setMobileShowPlaylist = useStore((s) => s.setMobileShowPlaylist);
 
-  const [playlistWidth, setPlaylistWidth] = useState(PLAYLIST_DEFAULT);
+  const [playlistWidth, setPlaylistWidth] = useState(loadPlaylistWidth);
   const playlistWidthRef = useRef(playlistWidth);
   playlistWidthRef.current = playlistWidth;
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('wmp_playlist_width', String(playlistWidth));
+    } catch (_) {}
+  }, [playlistWidth]);
 
   const noop = useCallback(() => {}, []);
 
@@ -93,11 +111,13 @@ export default function App() {
 
       {(!state.isMinimized || isMobile) && (
         <>
-          <div className="wmp-main">
+          <div
+            className={`wmp-main${isMobile && !mobileShowVisualizer ? ' wmp-mobile-viz-off' : ''}${isMobile && !mobileShowPlaylist ? ' wmp-mobile-list-off' : ''}`}
+          >
             <NavPanel />
             <div className="wmp-center">
-              <Visualizer />
-              <NowPlaying />
+              {(!isMobile || mobileShowVisualizer) && <Visualizer />}
+              {!isMobile && <NowPlaying />}
             </div>
             {!isMobile && (
               <div
@@ -105,12 +125,35 @@ export default function App() {
                 onMouseDown={startPlaylistResize}
               />
             )}
-            <Playlist
-              style={{
-                width: isMobile ? undefined : playlistWidth,
-              }}
-            />
+            {(!isMobile || mobileShowPlaylist) && (
+              <Playlist
+                style={{
+                  width: isMobile ? undefined : playlistWidth,
+                }}
+              />
+            )}
           </div>
+          {isMobile && (
+            <div className="wmp-mobile-nowplaying-bar">
+              <button
+                type="button"
+                className={`wmp-mobile-section-toggle${mobileShowVisualizer ? ' active' : ''}`}
+                onClick={() => setMobileShowVisualizer(!mobileShowVisualizer)}
+                aria-pressed={mobileShowVisualizer}
+              >
+                Viz
+              </button>
+              <button
+                type="button"
+                className={`wmp-mobile-section-toggle${mobileShowPlaylist ? ' active' : ''}`}
+                onClick={() => setMobileShowPlaylist(!mobileShowPlaylist)}
+                aria-pressed={mobileShowPlaylist}
+              >
+                List
+              </button>
+              <NowPlaying />
+            </div>
+          )}
           <Controls />
         </>
       )}
