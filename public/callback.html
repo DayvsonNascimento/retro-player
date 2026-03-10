@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Connecting to Spotify...</title></head>
+<body>
+<p>Connecting to Spotify...</p>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    var error = params.get('error');
+
+    if (code) {
+      localStorage.setItem('spotify_auth_code', code);
+      window.location.href = window.location.origin;
+    } else if (error) {
+      localStorage.setItem('spotify_auth_error', error);
+      window.location.href = window.location.origin;
+    } else {
+      document.body.innerHTML =
+        '<p>Authentication failed. Please close this tab and try again.</p>';
+    }
+  })();
+</script>
+</body>
+</html>

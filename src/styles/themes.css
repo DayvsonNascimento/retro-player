@@ -1,0 +1,299 @@
+/* ===== THEME: Tokyo Night ===== */
+.wmp-window[data-theme="tokyo-night"] {
+  --wt-window-bg:        #1a1b2e;
+  --wt-window-border:    #3d59a1;
+
+  --wt-titlebar-a:       #2a2d47;
+  --wt-titlebar-b:       #1a1b2e;
+  --wt-titlebar-c:       #1e2030;
+  --wt-titlebar-d:       #3d59a1;
+
+  --wt-menubar-a:        #24283b;
+  --wt-menubar-b:        #1a1f33;
+  --wt-menubar-border:   #3d4466;
+  --wt-menu-text:        #a9b1d6;
+  --wt-menu-hover-bg:    #3d59a1;
+  --wt-menu-hover-text:  #c0caf5;
+
+  --wt-nav-a:            #1e2235;
+  --wt-nav-b:            #16213e;
+  --wt-nav-border:       #3d4466;
+  --wt-nav-text:         #7aa2f7;
+  --wt-nav-active:       #7dcfff;
+
+  --wt-controls-a:       #1e2030;
+  --wt-controls-b:       #1a1b2e;
+  --wt-controls-border:  #3d4466;
+
+  --wt-status-a:         #3d59a1;
+  --wt-status-b:         #2a3d7a;
+  --wt-status-text:      #c0caf5;
+
+  --wt-seek-bg:          #2d3149;
+  --wt-seek-fill-a:      #7aa2f7;
+  --wt-seek-fill-b:      #3d59a1;
+  --wt-seek-thumb-a:     #9aa5ce;
+  --wt-seek-thumb-b:     #7aa2f7;
+
+  --wt-btn-a:            #2d3149;
+  --wt-btn-b:            #24283b;
+  --wt-btn-c:            #1a1f33;
+  --wt-btn-border:       #3d4466;
+  --wt-btn-text:         #a9b1d6;
+  --wt-btn-active-a:     #3d59a1;
+  --wt-btn-active-b:     #2a3d7a;
+  --wt-btn-active-c:     #1e3060;
+  --wt-btn-active-text:  #c0caf5;
+
+  --wt-playlist-bg:       #1e2235;
+  --wt-playlist-hdr-a:    #24283b;
+  --wt-playlist-hdr-b:    #1a1f33;
+  --wt-playlist-hdr-brd:  #3d4466;
+  --wt-playlist-row-bg:   #1a1b2e;
+  --wt-playlist-hover:    #2d3149;
+  --wt-playlist-active:   #3d4466;
+  --wt-playlist-empty:    #565f89;
+  --wt-playlist-select-bg: #24283b;
+  --wt-playlist-select-c: #7aa2f7;
+  --wt-track-link:        #7aa2f7;
+  --wt-track-link-hover:  #7dcfff;
+  --wt-track-bullet-on:   #7dcfff;
+  --wt-track-duration:    #565f89;
+  --wt-track-count:       #565f89;
+  --wt-resize-hnd-a:      #2d3149;
+  --wt-resize-hnd-b:      #24283b;
+  --wt-resize-hnd-brd:    #3d4466;
+
+  --wt-nowplay-a:        #1e2235;
+  --wt-nowplay-b:        #16213e;
+  --wt-nowplay-brd:      #3d4466;
+  --wt-nowplay-text:     #565f89;
+  --wt-nowplay-ready:    #9ece6a;
+  --wt-action-btn-brd:   #3d4466;
+  --wt-action-btn-text:  #7aa2f7;
+}
+
+/* ===== THEME: Dracula ===== */
+.wmp-window[data-theme="dracula"] {
+  --wt-window-bg:        #282a36;
+  --wt-window-border:    #6272a4;
+
+  --wt-titlebar-a:       #6272a4;
+  --wt-titlebar-b:       #44475a;
+  --wt-titlebar-c:       #4a4f63;
+  --wt-titlebar-d:       #6272a4;
+
+  --wt-menubar-a:        #44475a;
+  --wt-menubar-b:        #383a4a;
+  --wt-menubar-border:   #6272a4;
+  --wt-menu-text:        #f8f8f2;
+  --wt-menu-hover-bg:    #6272a4;
+  --wt-menu-hover-text:  #f8f8f2;
+
+  --wt-nav-a:            #383a4a;
+  --wt-nav-b:            #282a36;
+  --wt-nav-border:       #44475a;
+  --wt-nav-text:         #bd93f9;
+  --wt-nav-active:       #50fa7b;
+
+  --wt-controls-a:       #44475a;
+  --wt-controls-b:       #383a4a;
+  --wt-controls-border:  #6272a4;
+
+  --wt-status-a:         #6272a4;
+  --wt-status-b:         #44475a;
+  --wt-status-text:      #f8f8f2;
+
+  --wt-seek-bg:          #44475a;
+  --wt-seek-fill-a:      #bd93f9;
+  --wt-seek-fill-b:      #6272a4;
+  --wt-seek-thumb-a:     #f8f8f2;
+  --wt-seek-thumb-b:     #bd93f9;
+
+  --wt-btn-a:            #44475a;
+  --wt-btn-b:            #383a4a;
+  --wt-btn-c:            #2d303d;
+  --wt-btn-border:       #6272a4;
+  --wt-btn-text:         #f8f8f2;
+  --wt-btn-active-a:     #bd93f9;
+  --wt-btn-active-b:     #7a5fc4;
+  --wt-btn-active-c:     #5a3f9a;
+  --wt-btn-active-text:  #f8f8f2;
+
+  --wt-playlist-bg:       #282a36;
+  --wt-playlist-hdr-a:    #44475a;
+  --wt-playlist-hdr-b:    #383a4a;
+  --wt-playlist-hdr-brd:  #6272a4;
+  --wt-playlist-row-bg:   #21222c;
+  --wt-playlist-hover:    #44475a;
+  --wt-playlist-active:   #5a5e72;
+  --wt-playlist-empty:    #6272a4;
+  --wt-playlist-select-bg: #44475a;
+  --wt-playlist-select-c: #50fa7b;
+  --wt-track-link:        #50fa7b;
+  --wt-track-link-hover:  #80ff9f;
+  --wt-track-bullet-on:   #50fa7b;
+  --wt-track-duration:    #6272a4;
+  --wt-track-count:       #6272a4;
+  --wt-resize-hnd-a:      #44475a;
+  --wt-resize-hnd-b:      #383a4a;
+  --wt-resize-hnd-brd:    #6272a4;
+
+  --wt-nowplay-a:        #383a4a;
+  --wt-nowplay-b:        #282a36;
+  --wt-nowplay-brd:      #44475a;
+  --wt-nowplay-text:     #6272a4;
+  --wt-nowplay-ready:    #50fa7b;
+  --wt-action-btn-brd:   #6272a4;
+  --wt-action-btn-text:  #bd93f9;
+}
+
+/* ===== THEME: Monokai ===== */
+.wmp-window[data-theme="monokai"] {
+  --wt-window-bg:        #272822;
+  --wt-window-border:    #75715e;
+
+  --wt-titlebar-a:       #75715e;
+  --wt-titlebar-b:       #49483e;
+  --wt-titlebar-c:       #52504a;
+  --wt-titlebar-d:       #75715e;
+
+  --wt-menubar-a:        #49483e;
+  --wt-menubar-b:        #3e3d32;
+  --wt-menubar-border:   #75715e;
+  --wt-menu-text:        #f8f8f2;
+  --wt-menu-hover-bg:    #75715e;
+  --wt-menu-hover-text:  #f8f8f2;
+
+  --wt-nav-a:            #3e3d32;
+  --wt-nav-b:            #272822;
+  --wt-nav-border:       #49483e;
+  --wt-nav-text:         #fd971f;
+  --wt-nav-active:       #a6e22e;
+
+  --wt-controls-a:       #49483e;
+  --wt-controls-b:       #3e3d32;
+  --wt-controls-border:  #75715e;
+
+  --wt-status-a:         #f92672;
+  --wt-status-b:         #cc1d58;
+  --wt-status-text:      #f8f8f2;
+
+  --wt-seek-bg:          #49483e;
+  --wt-seek-fill-a:      #f92672;
+  --wt-seek-fill-b:      #ae1e54;
+  --wt-seek-thumb-a:     #f8f8f2;
+  --wt-seek-thumb-b:     #fd971f;
+
+  --wt-btn-a:            #49483e;
+  --wt-btn-b:            #3e3d32;
+  --wt-btn-c:            #2d2c28;
+  --wt-btn-border:       #75715e;
+  --wt-btn-text:         #f8f8f2;
+  --wt-btn-active-a:     #f92672;
+  --wt-btn-active-b:     #cc1d58;
+  --wt-btn-active-c:     #8a0038;
+  --wt-btn-active-text:  #f8f8f2;
+
+  --wt-playlist-bg:       #272822;
+  --wt-playlist-hdr-a:    #49483e;
+  --wt-playlist-hdr-b:    #3e3d32;
+  --wt-playlist-hdr-brd:  #75715e;
+  --wt-playlist-row-bg:   #1e1f1a;
+  --wt-playlist-hover:    #3e3d32;
+  --wt-playlist-active:   #49483e;
+  --wt-playlist-empty:    #75715e;
+  --wt-playlist-select-bg: #3e3d32;
+  --wt-playlist-select-c: #a6e22e;
+  --wt-track-link:        #a6e22e;
+  --wt-track-link-hover:  #c8f250;
+  --wt-track-bullet-on:   #a6e22e;
+  --wt-track-duration:    #75715e;
+  --wt-track-count:       #75715e;
+  --wt-resize-hnd-a:      #49483e;
+  --wt-resize-hnd-b:      #3e3d32;
+  --wt-resize-hnd-brd:    #75715e;
+
+  --wt-nowplay-a:        #3e3d32;
+  --wt-nowplay-b:        #272822;
+  --wt-nowplay-brd:      #49483e;
+  --wt-nowplay-text:     #75715e;
+  --wt-nowplay-ready:    #a6e22e;
+  --wt-action-btn-brd:   #75715e;
+  --wt-action-btn-text:  #fd971f;
+}
+
+/* ===== THEME: Solarized Dark ===== */
+.wmp-window[data-theme="solarized"] {
+  --wt-window-bg:        #002b36;
+  --wt-window-border:    #268bd2;
+
+  --wt-titlebar-a:       #073642;
+  --wt-titlebar-b:       #002b36;
+  --wt-titlebar-c:       #0a3040;
+  --wt-titlebar-d:       #268bd2;
+
+  --wt-menubar-a:        #073642;
+  --wt-menubar-b:        #002b36;
+  --wt-menubar-border:   #268bd2;
+  --wt-menu-text:        #839496;
+  --wt-menu-hover-bg:    #268bd2;
+  --wt-menu-hover-text:  #fdf6e3;
+
+  --wt-nav-a:            #073642;
+  --wt-nav-b:            #002b36;
+  --wt-nav-border:       #268bd2;
+  --wt-nav-text:         #268bd2;
+  --wt-nav-active:       #2aa198;
+
+  --wt-controls-a:       #073642;
+  --wt-controls-b:       #002b36;
+  --wt-controls-border:  #268bd2;
+
+  --wt-status-a:         #268bd2;
+  --wt-status-b:         #1565b0;
+  --wt-status-text:      #fdf6e3;
+
+  --wt-seek-bg:          #073642;
+  --wt-seek-fill-a:      #2aa198;
+  --wt-seek-fill-b:      #268bd2;
+  --wt-seek-thumb-a:     #839496;
+  --wt-seek-thumb-b:     #2aa198;
+
+  --wt-btn-a:            #073642;
+  --wt-btn-b:            #002b36;
+  --wt-btn-c:            #001c24;
+  --wt-btn-border:       #268bd2;
+  --wt-btn-text:         #839496;
+  --wt-btn-active-a:     #2aa198;
+  --wt-btn-active-b:     #1e7a72;
+  --wt-btn-active-c:     #145450;
+  --wt-btn-active-text:  #fdf6e3;
+
+  --wt-playlist-bg:       #073642;
+  --wt-playlist-hdr-a:    #073642;
+  --wt-playlist-hdr-b:    #002b36;
+  --wt-playlist-hdr-brd:  #268bd2;
+  --wt-playlist-row-bg:   #002b36;
+  --wt-playlist-hover:    #073642;
+  --wt-playlist-active:   #0d3d4a;
+  --wt-playlist-empty:    #586e75;
+  --wt-playlist-select-bg: #073642;
+  --wt-playlist-select-c: #2aa198;
+  --wt-track-link:        #2aa198;
+  --wt-track-link-hover:  #3dcfc4;
+  --wt-track-bullet-on:   #2aa198;
+  --wt-track-duration:    #586e75;
+  --wt-track-count:       #586e75;
+  --wt-resize-hnd-a:      #073642;
+  --wt-resize-hnd-b:      #002b36;
+  --wt-resize-hnd-brd:    #268bd2;
+
+  --wt-nowplay-a:        #073642;
+  --wt-nowplay-b:        #002b36;
+  --wt-nowplay-brd:      #268bd2;
+  --wt-nowplay-text:     #586e75;
+  --wt-nowplay-ready:    #2aa198;
+  --wt-action-btn-brd:   #268bd2;
+  --wt-action-btn-text:  #268bd2;
+}
